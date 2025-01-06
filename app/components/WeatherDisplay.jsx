@@ -4,7 +4,6 @@ import WeatherCard from './WeatherCard';
 import WeatherFilter from './WeatherFilter';
 
 export default function WeatherDisplay({ location, setLocation, weather, setWeather }) {
-  const [filter, setFilter] = useState('daily');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -103,25 +102,8 @@ export default function WeatherDisplay({ location, setLocation, weather, setWeat
             </div>
           </div>
 
-          {/* Time Filter */}
-          <div className="flex gap-3 justify-center my-8">
-            {['hourly', 'daily', 'weekly'].map((period) => (
-              <button 
-                key={period}
-                onClick={() => setFilter(period)}
-                className={`px-6 py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                  filter === period 
-                    ? 'glass-button text-white' 
-                    : 'bg-[var(--card-bg)] hover:bg-[var(--card-border)]'
-                }`}
-              >
-                {period.charAt(0).toUpperCase() + period.slice(1)}
-              </button>
-            ))}
-          </div>
-
           {/* Weather Cards */}
-          <WeatherCard data={weather} filter={filter} />
+          <WeatherCard data={weather} filter="daily" />
         </div>
       )}
     </div>
